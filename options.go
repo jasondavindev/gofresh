@@ -16,6 +16,7 @@ func NewOptions() Options {
 	return Options{
 		"dir": {"", "Watch directory"},
 		"h":   {false, "Show help"},
+		"cmd": {"", "Command to run after reload"},
 	}
 }
 
@@ -29,6 +30,14 @@ func (options Options) IsBool(flag string) bool {
 func (options Options) Has(flag string) bool {
 	_, ok := options[flag]
 	return ok
+}
+
+func (options Options) Get(flag string) *Option {
+	if options.Has(flag) {
+		return options[flag]
+	}
+
+	return nil
 }
 
 func (options Options) Bool(flag string) bool {

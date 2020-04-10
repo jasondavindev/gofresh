@@ -48,6 +48,9 @@ func main() {
 				case fsnotify.Rename:
 					fmt.Println("Rename", e.Name)
 				}
+
+				job := NewJob(options.Get("cmd").value.(string))
+				go job.Run()
 			}
 		}
 	}()
