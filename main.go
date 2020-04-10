@@ -4,6 +4,8 @@ import (
 	"fmt"
 	"log"
 	"os"
+	"strconv"
+	"time"
 
 	"gopkg.in/fsnotify.v1"
 )
@@ -50,7 +52,13 @@ func main() {
 				}
 
 				job := NewJob(options.Get("cmd").value.(string))
-				go job.Run()
+				delay := options.Get("delay").value.(string)
+				timer, err := strconv.ParseInt(delay, 10, 64)
+
+				if err == nil {
+					time.Sleep(time.Duration(timer) * time.Millisecond)
+					go job.Run()
+				}
 			}
 		}
 	}()

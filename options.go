@@ -14,9 +14,9 @@ type Options map[string]*Option
 
 func NewOptions() Options {
 	return Options{
-		"dir": {"", "Watch directory"},
-		"h":   {false, "Show help"},
-		"cmd": {"", "Command to run after reload"},
+		"h":     {false, "Show help"},
+		"cmd":   {"", "Command to run after reload"},
+		"delay": {"1000", "Delay for reload"},
 	}
 }
 
